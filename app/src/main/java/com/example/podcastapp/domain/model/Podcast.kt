@@ -1,4 +1,4 @@
-package com.example.podcastapp.domain
+package com.example.podcastapp.domain.model
 
 /**
  * Data class that holds the podcast information.

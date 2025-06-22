@@ -2,7 +2,7 @@ package com.example.podcastapp.data.mappers
 
 import com.example.podcastapp.data.local.PodcastEntity
 import com.example.podcastapp.data.remote.PodcastDto
-import com.example.podcastapp.domain.Podcast
+import com.example.podcastapp.domain.model.Podcast
 
 /**
  * Converting [PodcastDto] to [PodcastEntity] to store received objects from
