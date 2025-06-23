@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">PodcastApp</string>
+
+    <string name="homeScreen_appBar_title">Podcasts</string>
+    <string name="podcast_listItem_image_content_description">Image thumbnail of %s</string>
+
+    <string name="detailsScreen_appBar_title">Back</string>
+    <string name="detailsScreen_appBar_icon_content_description">Back icon button</string>
+
+    <string name="favourited_text">Favourited</string>
+    <string name="favourite_text">Favourite</string>
+
+    <string name="error_image_content_description">Error image</string>
+    <string name="error_text">Error loading data. Tap to retry.</string>
+    <string name="retry_text">Retry</string>
 </resources>

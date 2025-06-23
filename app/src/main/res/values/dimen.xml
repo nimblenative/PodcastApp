@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="screen_content_padding_large">16dp</dimen>
+    <dimen name="screen_content_padding_medium">12dp</dimen>
+    <dimen name="screen_content_padding_small">8dp</dimen>
+
+    <dimen name="homeScreen_vertical_text_padding">2dp</dimen>
+
+    <dimen name="homeScreen_listItem_thumbnail_size">78dp</dimen>
+    <dimen name="homeScreen_listItem_thumbnail_cornerShape_size">12dp</dimen>
+
+    <dimen name="error_image_size">128dp</dimen>
+    <dimen name="retry_button_padding_top">20dp</dimen>
+
+</resources>
