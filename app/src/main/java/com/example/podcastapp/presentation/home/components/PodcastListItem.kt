@@ -38,7 +38,9 @@ fun PreviewPodcastListItem() {
             id = "01",
             title = "Sample Title",
             publisher = "Publisher",
-            imageUrl = "img_01"
+            imageUrl = "img_01",
+            description = "Sample Description",
+            bannerUrl = "img_01"
         )
 
         PodcastListItem(

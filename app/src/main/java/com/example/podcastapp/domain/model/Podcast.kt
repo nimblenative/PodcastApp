@@ -8,5 +8,7 @@ data class Podcast(
     val id: String,
     val title: String,
     val publisher: String,
-    val imageUrl: String
+    val imageUrl: String,
+    val description: String,
+    val bannerUrl: String
 )

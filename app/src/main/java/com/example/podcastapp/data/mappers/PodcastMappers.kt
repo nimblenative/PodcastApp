@@ -13,7 +13,9 @@ fun PodcastDto.toPodcastEntity(): PodcastEntity {
         id = id,
         title = title,
         publisher = publisher,
-        imageUrl = imageUrl
+        imageUrl = imageUrl,
+        description = description,
+        bannerUrl = bannerUrl
     )
 }
 
@@ -27,6 +29,8 @@ fun PodcastEntity.toPodcast(): Podcast {
         id = id,
         title = title,
         publisher = publisher,
-        imageUrl = imageUrl
+        imageUrl = imageUrl,
+        description = description,
+        bannerUrl = bannerUrl
     )
 }

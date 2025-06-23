@@ -14,5 +14,8 @@ data class PodcastDto(
     val title: String,
     val publisher: String,
     @field:Json(name = "thumbnail")
-    val imageUrl: String
+    val imageUrl: String,
+    val description: String,
+    @field:Json(name = "image")
+    val bannerUrl: String
 )
