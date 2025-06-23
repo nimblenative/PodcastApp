@@ -2,7 +2,6 @@ package com.example.podcastapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.podcastapp.data.local.PodcastDao
 import com.example.podcastapp.data.local.PodcastDatabase
 import dagger.Module
 import dagger.Provides
@@ -23,11 +22,5 @@ object DatabaseModule {
             PodcastDatabase::class.java,
             "podcast.db"
         ).build()
-    }
-
-    @Provides
-    @Singleton
-    fun providePodcastDao(database: PodcastDatabase): PodcastDao {
-        return database.podcastDao()
     }
 }
