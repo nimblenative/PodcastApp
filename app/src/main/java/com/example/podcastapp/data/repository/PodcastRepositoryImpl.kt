@@ -5,7 +5,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.example.podcastapp.data.local.PodcastDao
+import androidx.room.withTransaction
+import com.example.podcastapp.data.local.PodcastDatabase
 import com.example.podcastapp.data.mappers.toPodcast
 import com.example.podcastapp.data.mappers.toPodcastEntity
 import com.example.podcastapp.data.remote.PodcastApiService
@@ -21,16 +22,18 @@ import javax.inject.Inject
 
 class PodcastRepositoryImpl @Inject constructor(
     private val podcastApiService: PodcastApiService,
-    private val localDataSource: PodcastDao
+    private val localDataSource: PodcastDatabase
 ) : PodcastRepository {
 
-    override fun getPodcasts(): Flow<PagingData<Podcast>> {
+    private val podcastDao = localDataSource.podcastDao()
+
+    override fun pagePodcasts(): Flow<PagingData<Podcast>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 10,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { localDataSource.pagingSource() }
+            pagingSourceFactory = { podcastDao.pagingSource() }
         ).flow
             .map { pagingData ->
                 pagingData.map { podcastEntity ->
@@ -39,12 +42,15 @@ class PodcastRepositoryImpl @Inject constructor(
             }
     }
 
-    override suspend fun refreshPodcasts(): Result<Unit> {
+    override suspend fun getPodcasts(): Result<Unit> {
         return try {
             val response = podcastApiService.getPodcasts()
             val entities = response.podcasts.map { it.toPodcastEntity() }
-            localDataSource.clearAll()
-            localDataSource.addPodcasts(entities)
+
+            localDataSource.withTransaction {
+                podcastDao.clearAll()
+                podcastDao.addPodcasts(entities)
+            }
             Result.Success(Unit)
         } catch (e: HttpException) {
             Log.e(TAG, e.response()?.errorBody().toString())
@@ -53,5 +59,9 @@ class PodcastRepositoryImpl @Inject constructor(
             Log.e(TAG, e.stackTraceToString())
             Result.Error("Could not refresh podcasts. Please check your connection.")
         }
+    }
+
+    override suspend fun getPodcastCount(): Int {
+        return podcastDao.getPodcastCount()
     }
 }

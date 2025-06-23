@@ -21,4 +21,7 @@ interface PodcastDao {
     @Query("SELECT * FROM podcast")
     fun pagingSource(): PagingSource<Int, PodcastEntity>
 
+    @Query("SELECT COUNT(*) FROM podcast")
+    suspend fun getPodcastCount(): Int
+
 }

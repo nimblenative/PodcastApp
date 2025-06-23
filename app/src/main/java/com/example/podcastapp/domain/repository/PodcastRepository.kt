@@ -11,11 +11,16 @@ interface PodcastRepository {
      * Retrieves a stream of paginated podcast data from the
      * local cache.
      */
-    fun getPodcasts(): Flow<PagingData<Podcast>>
+    fun pagePodcasts(): Flow<PagingData<Podcast>>
 
     /**
      * Fetches the latest podcasts from the network and replaces the
      * local cache.
      */
-    suspend fun refreshPodcasts(): Result<Unit>
+    suspend fun getPodcasts(): Result<Unit>
+
+    /**
+     * Retrieves the item count from the local cache.
+     */
+    suspend fun getPodcastCount(): Int
 }
