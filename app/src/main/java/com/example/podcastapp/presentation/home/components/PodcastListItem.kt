@@ -40,7 +40,8 @@ fun PreviewPodcastListItem() {
             publisher = "Publisher",
             imageUrl = "img_01",
             description = "Sample Description",
-            bannerUrl = "img_01"
+            bannerUrl = "img_01",
+            isFavorite = false
         )
 
         PodcastListItem(
@@ -110,11 +111,13 @@ fun PodcastListItem(
                     style = MaterialTheme.typography.bodySmall,
                     color = Color.Gray
                 )
-                Text(
-                    text = stringResource(R.string.favourited_text),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = Pink40
-                )
+                if (podcast.isFavorite) {
+                    Text(
+                        text = stringResource(R.string.favourited_text),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Pink40
+                    )
+                }
             }
         }
         HorizontalDivider(

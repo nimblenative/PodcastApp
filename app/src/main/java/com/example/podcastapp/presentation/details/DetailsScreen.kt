@@ -49,7 +49,8 @@ fun PreviewDetailsScreen() {
             publisher = "Publisher",
             imageUrl = "img_01",
             description = "Sample Description",
-            bannerUrl = "img_01"
+            bannerUrl = "img_01",
+            isFavorite = false
 
         )
         /*DetailsScreen(
@@ -130,7 +131,7 @@ fun DetailsScreen(
                     shape = RoundedCornerShape(
                         dimensionResource(R.dimen.details_screen_button_corner_shape_size)
                     ),
-                    onClick = {},
+                    onClick = viewModel::onFavoriteToggle,
                     colors = ButtonColors(
                         contentColor = Color.White,
                         containerColor = Pink40,
@@ -138,7 +139,11 @@ fun DetailsScreen(
                         disabledContentColor = Color.Gray
                     )
                 ) {
-                    Text(stringResource(R.string.favourite_text))
+                    Text(
+                        if (podcast!!.isFavorite) stringResource(R.string.favourited_text)
+                        else stringResource(R.string.favourite_text)
+                    )
+
                 }
                 Text(
                     modifier = Modifier
