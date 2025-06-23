@@ -10,5 +10,6 @@ data class Podcast(
     val publisher: String,
     val imageUrl: String,
     val description: String,
-    val bannerUrl: String
+    val bannerUrl: String,
+    val isFavorite: Boolean
 )
