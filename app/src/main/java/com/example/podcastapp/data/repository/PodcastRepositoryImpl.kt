@@ -7,6 +7,7 @@ import androidx.paging.PagingData
 import androidx.paging.map
 import androidx.room.withTransaction
 import com.example.podcastapp.data.local.PodcastDatabase
+import com.example.podcastapp.data.local.model.FavoriteEntity
 import com.example.podcastapp.data.mappers.toPodcast
 import com.example.podcastapp.data.mappers.toPodcastEntity
 import com.example.podcastapp.data.remote.PodcastApiService
@@ -67,5 +68,13 @@ class PodcastRepositoryImpl @Inject constructor(
 
     override fun getPodcastById(id: String): Flow<Podcast> {
         return podcastDao.getPodcastById(id).map { it.toPodcast() }
+    }
+
+    override suspend fun toggleFavoriteStatus(podcastId: String, isCurrentlyFavorite: Boolean) {
+        if (isCurrentlyFavorite) {
+            podcastDao.deleteFavorite(podcastId)
+        } else {
+            podcastDao.insertFavorite(FavoriteEntity(podcastId = podcastId))
+        }
     }
 }

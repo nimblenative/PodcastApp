@@ -29,4 +29,9 @@ interface PodcastRepository {
      * from the local cache.
      */
     fun getPodcastById(id: String): Flow<Podcast>
+
+    /**
+     * Toggles the favorite podcast and updates the local cache.
+     */
+    suspend fun toggleFavoriteStatus(podcastId: String, isCurrentlyFavorite: Boolean)
 }
