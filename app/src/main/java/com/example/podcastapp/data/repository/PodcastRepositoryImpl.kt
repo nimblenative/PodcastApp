@@ -64,4 +64,8 @@ class PodcastRepositoryImpl @Inject constructor(
     override suspend fun getPodcastCount(): Int {
         return podcastDao.getPodcastCount()
     }
+
+    override fun getPodcastById(id: String): Flow<Podcast> {
+        return podcastDao.getPodcastById(id).map { it.toPodcast() }
+    }
 }

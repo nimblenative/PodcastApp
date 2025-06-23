@@ -23,4 +23,10 @@ interface PodcastRepository {
      * Retrieves the item count from the local cache.
      */
     suspend fun getPodcastCount(): Int
+
+    /**
+     * Retrieves a stream of podcast data using its [id]
+     * from the local cache.
+     */
+    fun getPodcastById(id: String): Flow<Podcast>
 }
