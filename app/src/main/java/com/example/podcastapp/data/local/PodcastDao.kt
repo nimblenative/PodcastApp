@@ -42,8 +42,9 @@ interface PodcastDao {
     @Query(
         """
         SELECT podcast.*, (favorite.podcastId IS NOT NULL) as isFavorite
-        FROM podcast, favorite
-        WHERE id = :id
+        FROM podcast
+        LEFT JOIN favorite ON podcast.id = favorite.podcastId
+        WHERE podcast.id = :id
     """
     )
     fun getPodcastById(id: String): Flow<PodcastWithFavoriteStatus>
