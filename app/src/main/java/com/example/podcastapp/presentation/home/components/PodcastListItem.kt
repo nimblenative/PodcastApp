@@ -53,12 +53,12 @@ fun PreviewPodcastListItem() {
 @Composable
 fun PodcastListItem(
     podcast: Podcast,
-    onItemClick: () -> Unit
+    onItemClick: (String) -> Unit
 ) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onItemClick() },
+            .clickable { onItemClick(podcast.id) },
         verticalArrangement = Arrangement.spacedBy(
             dimensionResource(R.dimen.screen_content_padding_medium)
         )

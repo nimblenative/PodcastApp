@@ -31,7 +31,8 @@ import com.example.podcastapp.presentation.home.components.TitleBar
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
+    onItemClick: (String) -> Unit
 ) {
     // Collect life-cycle aware UI state for loading/error messages
     val uiState by viewModel.homeUiState.collectAsStateWithLifecycle()
@@ -91,7 +92,7 @@ fun HomeScreen(
                         if (podcast != null) {
                             PodcastListItem(
                                 podcast = podcast,
-                                onItemClick = {}
+                                onItemClick = onItemClick
                             )
                         }
                     }
